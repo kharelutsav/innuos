@@ -1,16 +1,16 @@
-from flask import make_response
 from REST_Controller.main import sio, app
-from flask import make_response
+from flask import Response
 import socketio
+from Middlewares.Middlewares import *
+
 
 @app.route("/", methods=["GET"])
-def getLibrary():
-    response = make_response("Hello, World!", 200)
-    response.mimetype = "text/html"
-    return response
+def getLibrary(request):
+    return Response("Hello, World!", 200, mimetype = "text/html")
 
 @app.route("/", methods=["POST",])
-def updateRequestFromUI_Receiver(request):
-    return "Hello, World!"
+def receiveUpdatesFrom_UI_Receiver(request):
+    return Response("Update Completed!", 200, mimetype = "text/html")
+
 
 application = socketio.WSGIApp(sio, app)
