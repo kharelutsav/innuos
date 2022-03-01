@@ -1,7 +1,6 @@
 import socketio
 from REST_Controller.server import sio, app
 from flask import Response, jsonify, request
-from Middlewares.Middlewares import *
 
 
 @app.route("/", methods=["GET"])
@@ -14,6 +13,15 @@ def getLibrary():
     except FileNotFoundError:
         return Response("Resource Not Found", 404, mimetype = "text/html")
 
+@app.route("/<library>/<song>", methods=["GET"])
+def streamMusic(library, song):
+    def generator():
+        with open(f"music\{library}\{song}.mp3", "rb") as my_music:
+            music = my_music.read(1024)
+            while music:
+                yield music
+                music = my_music.read(1024)
+    return Response(generator(), mimetype="audio/mp3")   
 
 @app.route("/update", methods=["POST"])
 def receiveUpdatesFrom_UI_Receiver():
