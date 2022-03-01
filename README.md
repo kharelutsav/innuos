@@ -15,7 +15,7 @@ Clone Repository: git clone https://github.com/kharelutsav/innuos.git
 
     python-socketio (python socketio library)
     Visit: https://python-socketio.readthedocs.io/en/latest/
-    Installation: pip install python-socketio
+    Installation: pip install python-socketio && pip install "python-socketio[client]"
 
     eventlet (concurrent networking library)
     Visit: https://eventlet.net/doc/
