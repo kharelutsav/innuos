@@ -5,19 +5,23 @@ Clone Repository: git clone https://github.com/kharelutsav/innuos.git
     python -m venv innuos
     cd innuos && .\Scripts\activate
 
-# START POINT:
+# Start Point:
     main.py
 
-# LIBRARIES USED:
-    Flask:
+# Libraries Used:
+    flask (python web frame-work)
     Visit: https://flask.palletsprojects.com/en/2.0.x/
     Installation: pip install flask
 
-    Python-socketio
+    python-socketio (python socketio library)
     Visit: https://python-socketio.readthedocs.io/en/latest/
     Installation: pip install python-socketio
 
-    Eventlet:
+    eventlet (concurrent networking library)
     Visit: https://eventlet.net/doc/
     Installation: pip install eventlet
+
+    python-decouple (Library for accessing .env variables)
+    Visit: https://pypi.org/project/python-decouple/
+    Installation: pip install python-decouple
 
