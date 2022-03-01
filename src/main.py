@@ -1,2 +1,7 @@
+import eventlet
+from eventlet import wsgi
+from REST_Controller.main import application
+
+
 if __name__ == "__main__":
-    pass
+    wsgi.server(eventlet.listen(('', 3000)), application)
