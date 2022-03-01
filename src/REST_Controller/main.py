@@ -1,5 +1,10 @@
-from UI_Receiver import sio, app
-import socketio
+from socketio import Server
+from flask import Flask
+from decouple import config
 
-if __name__ == "__main__":
-    application = socketio.WSGIApp(sio, app)
+
+sio = Server(cors_allowed_origin="*", async_handlers=True, async_mode="eventlet")
+
+app = Flask(__name__)
+app.config["SECRET_KEY"] = config("SECRET_KEY")
+

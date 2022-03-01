@@ -1,10 +1,16 @@
-from flask import Flask
-from socketio import Server
-from decouple import config
+from flask import make_response
+from REST_Controller.main import sio, app
+from flask import make_response
+import socketio
 
+@app.route("/", methods=["GET"])
+def getLibrary():
+    response = make_response("Hello, World!", 200)
+    response.mimetype = "text/html"
+    return response
 
-sio = Server(cors_allowed_origin="*", async_handlers=True, async_mode=None)
+@app.route("/", methods=["POST",])
+def updateRequestFromUI_Receiver(request):
+    return "Hello, World!"
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = config('SECRET_KEY')
-
+application = socketio.WSGIApp(sio, app)

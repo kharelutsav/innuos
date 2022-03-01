@@ -1,7 +1,7 @@
 import eventlet
 from eventlet import wsgi
-from REST_Controller.main import application
+from src.REST_Controller.UI_Receiver import application
 
 
 if __name__ == "__main__":
-    wsgi.server(eventlet.listen(('', 3000)), application)
+    wsgi.server(eventlet.listen(("", 3000)), application)
