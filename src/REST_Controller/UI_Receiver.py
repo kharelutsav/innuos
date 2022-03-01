@@ -1,8 +1,6 @@
-from distutils.log import error
-from os import path, getcwd
-from REST_Controller.main import sio, app
-from flask import Response
 import socketio
+from REST_Controller.main import sio, app
+from flask import Response, jsonify, request
 from Middlewares.Middlewares import *
 
 
@@ -13,12 +11,16 @@ def getLibrary():
             data = data.readlines()
         return Response(data, 200, mimetype = "application/json")
     except FileNotFoundError:
-        return Response("Test Failed!", 200, mimetype = "text/html")
+        return Response("Resource Not Found", 404, mimetype = "text/html")
 
 
-@app.route("/", methods=["POST",])
+@app.route("/update", methods=["POST"])
 def receiveUpdatesFrom_UI_Receiver():
-    return Response("Update Completed!", 200, mimetype = "text/html")
-
+    try:
+        return request.json
+    except TypeError:
+        return Response("Unable to submit form data.", 403, mimetype = "text/html")
+    except RuntimeError:
+        return Response("Unable to submit form data.", 403, mimetype = "text/html")
 
 application = socketio.WSGIApp(sio, app)
