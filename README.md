@@ -1,22 +1,23 @@
 # innuos
+Clone Repository: git clone https://github.com/kharelutsav/innuos.git
 
-# GitHub Repository: https://github.com/kharelutsav/innuos.git
-# Clone repository: git clone https://github.com/kharelutsav/innuos.git
+# Create Virtual Environment
+    python -m venv innuos
+    cd innuos && .\Scripts\activate
 
-# Create Virtual Environment: python -m venv innuos
+# START POINT:
+    main.py
 
-# Start VEnv: cd innuos && .\Scripts\activate.bat
+# LIBRARIES USED:
+    Flask:
+    Visit: https://flask.palletsprojects.com/en/2.0.x/
+    Installation: pip install flask
 
-# Program Start Point: main.py
+    Python-socketio
+    Visit: https://python-socketio.readthedocs.io/en/latest/
+    Installation: pip install python-socketio
 
-# Libraries Used:
-
-  # Flask: https://flask.palletsprojects.com/en/2.0.x/
-  # Installation: pip install flask
-
-  # Python-socketio: https://python-socketio.readthedocs.io/en/latest/
-  # Installation: pip install python-socketio
-
-  # Eventlet: https://eventlet.net/doc/
-  # Installation: pip install eventlet
+    Eventlet:
+    Visit: https://eventlet.net/doc/
+    Installation: pip install eventlet
 
