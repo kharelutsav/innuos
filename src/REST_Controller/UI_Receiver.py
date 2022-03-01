@@ -27,11 +27,11 @@ def streamMusic(library, song):
 @app.route("/update", methods=["POST"])
 def receiveUpdatesFrom_UI_Receiver():
     try:
-        with open("src\Data.json", "r") as read_database:
-            old_library = json.load(read_database)
-        old_library.update(request.json)
-        with open("src\Data.json", "w") as write_database:
-            write_database.write(json.dumps(old_library, indent=4))
+        with open("src\Data.json", "r+") as read_json_file:
+            old_library = json.load(read_json_file)
+            old_library.update(request.json)
+            read_json_file.seek(0)
+            json.dump(old_library, read_json_file, indent=4)
         return jsonify(old_library)
     except TypeError:
         return Response("Unable to submit form data.", 403, mimetype = "text/html")
