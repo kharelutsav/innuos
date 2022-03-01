@@ -26,16 +26,5 @@
         {
             "Young_Dumb_&_Broke": "../Thumbnails/"
         }
-    ],
-    "Nepali": [
-        {
-            "Bipul_Chettri_-_Asaar": "Path/to/icon"
-        },
-        {
-            "Bipul_Chettri_-_Syndicate": "Path/to/icon"
-        },
-        {
-            "Bipul_Chettrri_-_Junkeri": "Path/to/icon"
-        }
     ]
 }

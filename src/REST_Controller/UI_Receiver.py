@@ -1,4 +1,5 @@
 import socketio
+import json
 from REST_Controller.server import sio, app
 from flask import Response, jsonify, request
 
@@ -26,7 +27,12 @@ def streamMusic(library, song):
 @app.route("/update", methods=["POST"])
 def receiveUpdatesFrom_UI_Receiver():
     try:
-        return request.json
+        with open("src\Data.json", "r") as read_database:
+            old_library = json.load(read_database)
+        old_library.update(request.json)
+        with open("src\Data.json", "w") as write_database:
+            write_database.write(json.dumps(old_library, indent=4))
+        return jsonify(old_library)
     except TypeError:
         return Response("Unable to submit form data.", 403, mimetype = "text/html")
     except RuntimeError:
