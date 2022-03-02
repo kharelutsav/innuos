@@ -1,7 +1,7 @@
 from src.Store.Cache import CACHE_STORE
 
 def return_Data_From_Cache():
-    data = CACHE_STORE.getCache()
+    data = 
     return data
 
 

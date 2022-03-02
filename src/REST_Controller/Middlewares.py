@@ -1,4 +1,14 @@
 import json
+
+def fetchDataFromDatabase():
+    with open("src\store\Database.json", "r") as Database:
+        data = json.load(Database)
+    return data
+
+def getDataFromCache():
+    pass
+
+
 # from src.Store.Cache import CACHE_STORE
 
 # Linearize writes to the database:
@@ -27,12 +37,6 @@ import json
 
 # def cacheTimers():
 #     pass
-
-
-def fetchDataFromDatabase():
-    with open("src\store\Database.json", "r") as Database:
-        data = json.load(Database)
-    return data
 
 
 # def return_Data_From_Cache():

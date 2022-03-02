@@ -1,6 +1,6 @@
 from src.Store.Cache import CACHE_STORE
-from src.Middlewares.Middlewares import fetchDataFromDatabase
-from server import sio
+from REST_Controller.Middlewares import fetchDataFromDatabase
+from REST_Controller.server import sio
 
 
 def updateCache():
@@ -10,8 +10,4 @@ def updateCache():
 @sio.event
 def connect():
     print("Connected to the server.", sio.sid)
-
-@sio.on("Update Cache")
-def update():
-    updateCache()
 
