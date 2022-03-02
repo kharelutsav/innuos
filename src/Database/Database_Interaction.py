@@ -1,5 +1,4 @@
-# from DatabaseConnection import con
-from REST_Controller.DatabaseConnection import con
+from Database.DatabaseConnection import con
 
 cur = con.cursor()
 

@@ -1,5 +1,5 @@
 from src.Store.Cache import CACHE_STORE
-from REST_Controller.Database_Interaction import getLibrariesFromDatabase
+from Database.Database_Interaction import getLibrariesFromDatabase
 
 
 def updatesCache():
