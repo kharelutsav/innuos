@@ -5,14 +5,14 @@ from flask import Response, jsonify, request
 from REST_Controller.Cache_Updater import updatesCache
 from src.Store.Cache import CACHE_STORE
 
+
+if CACHE_STORE.getCacheCount() == 0:
+    updatesCache()  
+
 @app.route("/", methods=["GET"])
 def getLibrary():
     try:
-        if CACHE_STORE.getCache() != []:
-            data = CACHE_STORE.getCache()
-        else:
-            updatesCache()
-            data = CACHE_STORE.getCache()
+        data = CACHE_STORE.getCache()
         return jsonify(data)
     except FileNotFoundError:
         return Response("Resource Not Found", 404, mimetype = "text/html")
