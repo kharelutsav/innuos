@@ -4,6 +4,8 @@ from src.REST_Controller.server import sio, app
 from flask import Response, jsonify, request
 from REST_Controller.Cache_Updater import updatesCache
 from src.Store.Cache import CACHE_STORE
+from decouple import config
+from os import path
 
 
 if CACHE_STORE.getCacheCount() == 0:
@@ -17,15 +19,21 @@ def getLibrary():
     except FileNotFoundError:
         return Response("Resource Not Found", 404, mimetype = "text/html")
 
-@app.route("/<library>/<song>", methods=["GET"])
-def streamMusic(library, song):
+@app.route("/play/<song>", methods=["GET"])
+def streamMusic(song):
     def generator():
-        with open(f"music\{library}\{song}.mp3", "rb") as my_music:
-            music = my_music.read(1024)
+        with open(f"music\{song}.mp3", "rb") as read_music:
+            music = read_music.read(1024)
             while music:
                 yield music
-                music = my_music.read(1024)
+                music = read_music.read(1024)
     return Response(generator(), mimetype="audio/mp3")   
+
+@app.route("/upload/<Songname>", methods=["POST"])
+def saveMusicFile(Songname):
+    music = request.files["file"]
+    music.save(path.join(config("UPLOAD_FOLDER"),Songname))
+    return Response(status=200)
 
 @app.route("/update", methods=["POST"])
 def receiveUpdatesFrom_UI_Receiver():
