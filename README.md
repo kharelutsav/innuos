@@ -30,7 +30,19 @@ Clone Repository: git clone https://github.com/kharelutsav/innuos.git
 
 # Decisions:
 1   Many smaller queries though increases overhead, helps reduce the unnecessary 
-    database queries. Hence, is selected approach for updating cache.
+    database queries. But, due to insufficient knowledge on requirements, large
+    queries are used for updating in-memory cache (No cache libraries used.).
+    Could be modified if required.
 
-2   
+2   Database: 1
+    Tables: 3
+        library:
+            library_name (Primary Key)
+        music:
+            music_name (Primary Key)
+            music_file (Relative path to the image file.)  (Not null)
+            thumbnail_image (Relative path to the image file.) (Null allowed)
+        collection:
+            library_name (Foreign Key) (Indexed)
+            music_name (Foreign Key) (Indexed)
 
