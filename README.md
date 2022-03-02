@@ -28,3 +28,9 @@ Clone Repository: git clone https://github.com/kharelutsav/innuos.git
     Visit: https://dev.mysql.com/doc/connector-python/en/
     Installation: pip install mysql-connector-python
 
+# Decisions:
+1   Many smaller queries though increases overhead, helps reduce the unnecessary 
+    database queries. Hence, is selected approach for updating cache.
+
+2   
+
