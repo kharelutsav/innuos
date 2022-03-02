@@ -1,7 +1,7 @@
 class Cache:
 
     def __init__(self) -> None:
-        self.__cache = {}
+        self.__cache = []
 
     # def __new__(cls):
     #     if not hasattr (cls, "instance"):
@@ -14,7 +14,7 @@ class Cache:
     def getCache(self):
         return self.__cache
     
-    def updateCache(self, jsonObj: dict):
-        self.__cache.update(jsonObj)
+    def updateCache(self, jsonObj):
+        self.__cache = jsonObj
 
 CACHE_STORE = Cache()

@@ -2,21 +2,17 @@ import socketio
 import json
 from src.REST_Controller.server import sio, app
 from flask import Response, jsonify, request
-from REST_Controller.Cache_Updater import *
+from REST_Controller.Cache_Updater import updatesCache
 from src.Store.Cache import CACHE_STORE
-from datetime import datetime
 
 @app.route("/", methods=["GET"])
 def getLibrary():
     try:
-        time1 = datetime.now().microsecond
-        if CACHE_STORE.getCache() != {}:
+        if CACHE_STORE.getCache() != []:
             data = CACHE_STORE.getCache()
         else:
-            updateCache()
+            updatesCache()
             data = CACHE_STORE.getCache()
-        time2 = datetime.now().microsecond
-        print(time2 - time1)
         return jsonify(data)
     except FileNotFoundError:
         return Response("Resource Not Found", 404, mimetype = "text/html")

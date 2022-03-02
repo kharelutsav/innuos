@@ -1,13 +1,8 @@
 from src.Store.Cache import CACHE_STORE
-from REST_Controller.Middlewares import fetchDataFromDatabase
-from REST_Controller.server import sio
+from REST_Controller.Database_Interaction import getLibrariesFromDatabase
 
 
-def updateCache():
-    library_from_database = fetchDataFromDatabase()
-    CACHE_STORE.updateCache(library_from_database)
-
-@sio.event
-def connect():
-    print("Connected to the server.", sio.sid)
+def updatesCache():
+    libraries_from_database = getLibrariesFromDatabase()
+    CACHE_STORE.updateCache(libraries_from_database)
 

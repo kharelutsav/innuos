@@ -1,21 +1,22 @@
-import collections
-from DatabaseConnection import con
+# from DatabaseConnection import con
+from REST_Controller.DatabaseConnection import con
 
 cur = con.cursor()
 
-def GetLibrariesFromDatabase():
+def getLibrariesFromDatabase():
+    data = []
     query = "SELECT library_name FROM Library"
     cur.execute(query)
-    data = cur.fetchall()
+    for (lib,) in cur:
+        data.append(lib)
     return data
-count = GetLibrariesFromDatabase()
 
 def GetMusicsFromDatabase(library_name):
     query = ("SELECT music_name FROM collection WHERE library_name = %s")
     params = library_name
     cur.execute(query, params)
     collections = cur.fetchall()
-    print(collections)
+    return collections
 
-for i in range(len(count)):
-    GetMusicsFromDatabase(count[i])
+# for i in range(len(count)):
+#     GetMusicsFromDatabase(count[i])
