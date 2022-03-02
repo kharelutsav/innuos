@@ -1,3 +1,4 @@
+from re import S
 from Database.DatabaseConnection import con
 
 cur = con.cursor()
@@ -15,7 +16,5 @@ def GetMusicsFromDatabase(library_name):
     params = library_name
     cur.execute(query, params)
     collections = cur.fetchall()
-    return collections
+    return collections    
 
-# for i in range(len(count)):
-#     GetMusicsFromDatabase(count[i])

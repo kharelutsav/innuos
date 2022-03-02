@@ -2,14 +2,15 @@ import socketio
 import json
 from src.REST_Controller.server import sio, app
 from flask import Response, jsonify, request
-from REST_Controller.Cache_Updater import updatesCache
+from REST_Controller.Cache_Updater import updateCache
 from src.Store.Cache import CACHE_STORE
 from decouple import config
 from os import path
+from Middlewares.Middlewares import lock
 
 
 if CACHE_STORE.getCacheCount() == 0:
-    updatesCache()  
+    updateCache()
 
 @app.route("/", methods=["GET"])
 def getLibrary():
