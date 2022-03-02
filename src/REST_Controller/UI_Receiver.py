@@ -7,7 +7,7 @@ from flask import Response, jsonify, request
 @app.route("/", methods=["GET"])
 def getLibrary():
     try:
-        with open("src\Data.json", "r") as data:
+        with open("src\Store\Database.json", "r") as data:
             data = data.readlines()
             sio.emit("Gotcha")
         return Response(data, 200, mimetype = "application/json")
@@ -27,7 +27,7 @@ def streamMusic(library, song):
 @app.route("/update", methods=["POST"])
 def receiveUpdatesFrom_UI_Receiver():
     try:
-        with open("src\Data.json", "r+") as read_json_file:
+        with open("src\Store\Database.json", "r+") as read_json_file:
             old_library = json.load(read_json_file)
             old_library.update(request.json)
             read_json_file.seek(0)

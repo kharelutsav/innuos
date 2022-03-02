@@ -31,6 +31,7 @@ scripts/
 music/
 Thumbnails/
 *.cfg
+SingletonPractice/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
