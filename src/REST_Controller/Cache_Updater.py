@@ -5,8 +5,9 @@ import time
 
 def performUpdate():
     if lock.status() == 0:
-        libraries_from_database = getLibrariesFromDatabase()
-        CACHE_STORE.updateCache(libraries_from_database)
+        playlists, libraries_from_database = getLibrariesFromDatabase()
+        CACHE_STORE.updatePlaylistsCache(playlists)
+        CACHE_STORE.updateLibraryCache(libraries_from_database)
         timer.setCacheUpdateTime(time.time())    
 
 def updateCache():

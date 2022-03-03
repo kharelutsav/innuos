@@ -29,12 +29,14 @@ Clone Repository: git clone https://github.com/kharelutsav/innuos.git
     Installation: pip install mysql-connector-python
 
 # Decisions:
-1   Many smaller queries though increases overhead, helps reduce the unnecessary 
+1   Singleton Design Pattern with Object Oriented Programming approach
+
+2   Many smaller queries though increases overhead, helps reduce the unnecessary 
     database queries. But, due to insufficient knowledge on requirements, large
     queries are used for updating in-memory cache (No cache libraries used.).
     Could be modified if required.
 
-2   Database: 1
+3   Database: 1
     Tables: 3
         1   library:
                 library_name (Primary Key)
@@ -46,8 +48,6 @@ Clone Repository: git clone https://github.com/kharelutsav/innuos.git
                 library_name (Foreign Key) (Indexed)
                 music_name (Foreign Key) (Indexed)
 
-# Mistakes: Confused playlists with library
-
 # TODO: Work on upload function
 The update function should be able to receive updates on music library.
 Create playlist to create and manage playlists.
@@ -55,8 +55,8 @@ Create endpoints to get and update playlists.
 Update cache class to classify libraries and playlists.
 This much for tomorrow.
 
-
-# Completed: Table(Music) A.K.A. Library
-# Completed: Table(Library) A.K.A. Playlists
-# Completed: Created in-memory cache and functions to populate it
+# Completed: 
+    Table(Music) A.K.A. Library
+    Table(Library) A.K.A. Playlists
+    Created in-memory cache and functions to populate it
 

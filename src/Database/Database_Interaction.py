@@ -4,7 +4,8 @@ from Database.DatabaseConnection import con
 cur = con.cursor()
 
 def getLibrariesFromDatabase():
-    buffer = {}
+    library = {}
+    playlists = []
     query = "SELECT library.library_name, music.music_name, music.music_file, music.thumbnail_image\
         FROM library LEFT JOIN collection on\
         library.library_name = collection.library_name\
@@ -12,13 +13,14 @@ def getLibrariesFromDatabase():
         collection.music_name = music.music_name;"
     cur.execute(query)
     for (library_name, music_name, file_path, image_path) in cur:
-        if not library_name in buffer:
+        if not library_name in library:
             if library_name == None:
                 library_name = "Unclassified"
-            buffer[library_name] = [[music_name, file_path, image_path]]
+            playlists.append(library_name)
+            library[library_name] = [[music_name, file_path, image_path]]
             continue
-        buffer[library_name].append([music_name, file_path, image_path])
-    return buffer
+        library[library_name].append([music_name, file_path, image_path])
+    return playlists, library
 
 # def getOnlyLibrariesFromDatabase():
 #     data = []

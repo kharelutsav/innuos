@@ -12,29 +12,47 @@ from Middlewares.Middlewares import lock
 if CACHE_STORE.getCacheCount() == 0:
     updateCache()
 
+
+@app.route("/library", methods=["GET"]) ############### COMPLETED FOR NOW
 @app.route("/", methods=["GET"])
 def getLibrary():
     try:
-        data = CACHE_STORE.getCache()
+        data = CACHE_STORE.getPlaylists()
         return jsonify(data)
     except FileNotFoundError:
         return Response("Resource Not Found", 404, mimetype = "text/html")
 
-@app.route("/play/<song>", methods=["GET"])
-def streamMusic(song):
-    def generator():
-        with open(f"music\{song}.mp3", "rb") as read_music:
-            music = read_music.read(1024)
-            while music:
-                yield music
+
+@app.route("/<playlist>", methods=["GET"]) ############### COMPLETED FOR NOW
+def getPlaylist(playlist):
+    try:
+        data = CACHE_STORE.getPlaylist(playlist)
+        return jsonify(data)
+    except:
+        return Response("Playlist Unavailable", 404, mimetype = "text/html")
+
+
+@app.route("/<playlist>/<song>", methods=["GET"]) ############### COMPLETED FOR NOW
+def streamMusic(playlist, song): 
+    try:
+        def generator():
+            with open(f"music\{song}.mp3", "rb") as read_music:
                 music = read_music.read(1024)
-    return Response(generator(), mimetype="audio/mp3")   
+                while music:
+                    yield music
+                    music = read_music.read(1024)
+        return Response(generator(), mimetype="audio/mp3")
+    except NotImplemented:
+        return Response("Playlist Unavailable", 404, mimetype = "text/html")
+
 
 @app.route("/upload/<Songname>", methods=["POST"])
 def saveMusicFile(Songname):
+    print(request)
     music = request.files["file"]
     music.save(path.join(config("UPLOAD_FOLDER"),Songname))
     return Response(status=200)
+
 
 @app.route("/update", methods=["POST"])
 def receiveUpdatesFrom_UI_Receiver():
